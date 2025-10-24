@@ -35,8 +35,8 @@ import argparse
 import sys
 import atexit
 
-PYTHON_VERSION = "3.9.7"
-SHORT_PYTHON_VERSION = "3.9"
+PYTHON_VERSION = "3.13.5"
+SHORT_PYTHON_VERSION = "3.13"
 
 PRODUCTSIGN = "/usr/bin/productsign"
 CODESIGN = "/usr/bin/codesign"
@@ -168,11 +168,11 @@ def main():
     root_dir = args.location
     PY_CUR = os.path.join(root_dir, "Versions/Current")
     # Set root:admin throughout payload
-    for root, dirs, files in os.walk(root_dir):
+    for root, dirs, files in os.walk(root_dir, followlinks=False):
         for dir_ in dirs:
             os.chown(os.path.join(root, dir_), 0, 80)
         for file_ in files:
-            os.chown(os.path.join(root, file_), 0, 80)
+            os.chown(os.path.join(root, file_), 0, 80, follow_symlinks=False)
 
     # Generate entitlements file for later
     entitlements = {

@@ -8,7 +8,7 @@ import platform
 import plistlib
 import re
 import subprocess
-from distutils.version import StrictVersion
+from packaging.version import Version as StrictVersion
 
 import sal
 

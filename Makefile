@@ -15,8 +15,8 @@ PAYLOAD=\
 	pack-Library-LaunchDaemons-com.salopensource.sal.random.runner.plist \
 	pack-script-postinstall \
 	pack-python \
-	remove-xattrs \
 	sign
+# 	remove-xattrs \
 
 clean-build:
 	killall Dropbox || true
@@ -56,7 +56,7 @@ build-python:
 	@./build_python_framework.sh
 	@find ./Python.framework -name '*.pyc' -delete
 
-sign: remove-xattrs
+sign: #remove-xattrs
 	@sudo ./sign_python_framework.py -v -S "${DEV_APP_CERT}" -L ${WORK_D}/usr/local/sal/Python.framework
 
 remove-xattrs:
